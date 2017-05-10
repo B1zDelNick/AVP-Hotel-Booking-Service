@@ -7,14 +7,20 @@
         .module('app')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope','$http'];
+    HomeController.$inject = ['$scope','$location', '$http'];
 
-    function HomeController($scope, $http)
+    function HomeController($scope, $location, $http)
     {
-        //vm.bookings = [];
         $scope.logged = false;
-        //vm.getAffordable = getAffordable;
-        //vm.deleteBooking = deleteBooking;
+        $scope.toLogin = function ()
+        {
+            $location.url("/login");
+        };
+        $scope.isLog = function ()
+        {
+            //console.log($scope.logged);
+            return $scope.logged;
+        };
 
         init();
 
@@ -25,43 +31,20 @@
 
         function isLogged()
         {
-            var url = "/auth/isLogged";
+            var url = "/isLogged";
             var loggedPromise = $http.post(url);
-            var result = false;
+            $scope.logged = false;
 
             loggedPromise.then(
                 function(response)
                 {
-                    console.log(response.data);
-                    result = response.data.body != 'none';
+                    //console.log(response.data);
+                    $scope.logged = response.data.body != 'none';
                 },
                 function(error)
                 {
                     console.log(error);
                 });
-
-            $scope.logged = result;
         }
-
-        /*function getAffordable()
-        {
-            var url = "/bookings/affordable/" + 100;
-            var bookingsPromise = $http.post(url);
-            bookingsPromise.then(function(response)
-            {
-                vm.bookings = response.data;
-            });
-        }
-
-        function deleteBooking(id)
-        {
-            console.log(id);
-
-            var url = "/bookings/delete/" + id;
-            $http.post(url).then(function(response)
-            {
-                vm.bookings = response.data;
-            });
-        }*/
     }
 })();

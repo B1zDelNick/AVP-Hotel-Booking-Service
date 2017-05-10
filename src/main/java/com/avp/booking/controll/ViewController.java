@@ -11,13 +11,21 @@ public class ViewController
 {
     private static final String INDEX_VIEW = "views/index";
 
-    @GetMapping(value = {"/home", "/login", "/register"})
+    @GetMapping(value = {"/home", "/login", "/register", "logout2"})
     public ModelAndView index(ModelAndView view)
     {
         view.setViewName(INDEX_VIEW);
 
         return view;
     }
+
+    /*@GetMapping(value = {"/logout"})
+    public ModelAndView logiut(ModelAndView view)
+    {
+        view.setViewName(INDEX_VIEW);
+
+        return view;
+    }*/
 
     @GetMapping("/")
     public String root()

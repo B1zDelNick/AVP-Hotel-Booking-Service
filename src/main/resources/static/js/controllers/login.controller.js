@@ -16,7 +16,10 @@
             username: "",
             password: ""
         };
-
+        $scope.toRegister = function ()
+        {
+            $location.url("/register");
+        };
         $scope.hasErrors = function()
         {
             return $scope.errors;

@@ -44,11 +44,17 @@
             th:src="@{/js/controllers/home.controller.js}"></script>
     <script type="text/javascript" src="../../static/js/controllers/login.controller.js"
             th:src="@{/js/controllers/login.controller.js}"></script>
+    <script type="text/javascript" src="../../static/js/controllers/logout.controller.js"
+            th:src="@{/js/controllers/logout.controller.js}"></script>
+    <script type="text/javascript" src="../../static/js/controllers/register.controller.js"
+            th:src="@{/js/controllers/register.controller.js}"></script>
+    <script type="text/javascript" src="../../static/js/controllers/main.controller.js"
+            th:src="@{/js/controllers/main.controller.js}"></script>
 
 </head>
 <body>
 
-<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="navbar navbar-inverse navbar-fixed-top" ng-controller="MainController">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
@@ -56,22 +62,28 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Demo project</a>
+            <a class="navbar-brand" href="#" th:text="${@environment.getProperty('app.name')}">Demo project</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#" th:href="@{/}">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li id="home-btn" class="active" ng-click='selectMe($event)'>
+                    <a ng-click="toHome()">Home</a>
+                </li>
+                <li id="about-btn" ng-click='selectMe($event)'>
+                    <a ng-click="toAbout()">About</a>
+                </li>
+                <li id="contacts-btn" ng-click='selectMe($event)'>
+                    <a ng-click="toContacts()">Contacts</a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li sec:authorize="not isAuthenticated()">
-                    <a href="/signin" th:href="@{/login}">
+                    <a ng-click="toLogin()">
                         <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Sign in
                     </a>
                 </li>
                 <li sec:authorize="isAuthenticated()">
-                    <a href="/logout" th:href="@{/logout}" onclick="$('#form').submit();">
+                    <a onclick="$('#form').submit();">
                         <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Logout
                     </a>
                     <form style="visibility: hidden" id="form" method="post" action="/logout" th:action="@{/logout}"></form>
