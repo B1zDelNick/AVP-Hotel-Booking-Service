@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Page not found</title>
+</head>
+<body>
+<div>
+    <h1 th:align="center" th:text="'Page not found:'">Page not found on this server</h1>
+    <h2 th:align="center" th:text="${errorMessage}"></h2>
+    <!--<h1>
+        <span th:text="'Page not found:'" th:remove="tag">Page not found on this server</span>
+        <small th:text="${errorMessage}" ></small>
+    </h1>-->
+</div>
+</body>
+</html>

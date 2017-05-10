@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      ng-app="app">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0"/>
+
+    <title>Hotel Booking Service</title>
+
+    <!-- CSS -->
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" type="text/css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flat-ui/2.3.0/css/flat-ui.min.css" rel="stylesheet"
+          th:href="@{/webjars/flat-ui/bcaf2de95e/css/flat-ui.css}" type="text/css"/>
+    <link href="../../static/css/core.css" rel="stylesheet"
+          th:href="@{/css/core.css}" type="text/css"/>
+
+    <!-- 3rd party -->
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.1.min.js"
+            th:src="@{/webjars/jquery/3.2.0/jquery.min.js}"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.js}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"
+            th:src="@{/webjars/underscorejs/1.8.3/underscore-min.js}"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"
+            th:src="@{/webjars/angular/1.6.4/angular.min.js}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-resource.min.js"
+            th:src="@{/webjars/angular-resource/1.6.4/angular-resource.js}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"
+            th:src="@{/webjars/angular-route/1.6.4/angular-route.js}"></script>
+
+    <!-- application -->
+
+    <script type="text/javascript" src="../../static/js/app.module.js"
+            th:src="@{/js/app.module.js}"></script>
+    <script type="text/javascript" src="../../static/js/controllers/home.controller.js"
+            th:src="@{/js/controllers/home.controller.js}"></script>
+    <script type="text/javascript" src="../../static/js/controllers/login.controller.js"
+            th:src="@{/js/controllers/login.controller.js}"></script>
+
+</head>
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Demo project</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#" th:href="@{/}">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li sec:authorize="not isAuthenticated()">
+                    <a href="/signin" th:href="@{/login}">
+                        <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Sign in
+                    </a>
+                </li>
+                <li sec:authorize="isAuthenticated()">
+                    <a href="/logout" th:href="@{#}" onclick="$('#form').submit();">
+                        <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Logout
+                    </a>
+                    <form style="visibility: hidden" id="form" method="post" action="#" th:action="@{/logout}"></form>
+                </li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+
+</div>
+
+<div class="container" ng-cloak="" style="min-height: calc(100vh - 80px - 35px);">
+
+    <ng-view></ng-view>
+
+</div>
+
+<footer th:align="center">
+    &copy; <span th:text="${#temporals.format(#temporals.createNow(), 'dd/MMM/yyyy HH:mm')}">2017</span>,
+    <span th:text="${@environment.getProperty('app.version')}"></span>
+</footer>
+
+</body>
+</html>
