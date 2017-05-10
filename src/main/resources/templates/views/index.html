@@ -9,7 +9,7 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0"/>
 
-    <title>Hotel Booking Service</title>
+    <title th:text="${@environment.getProperty('app.name')}">Hotel Booking Service</title>
 
     <!-- CSS -->
 
@@ -71,10 +71,10 @@
                     </a>
                 </li>
                 <li sec:authorize="isAuthenticated()">
-                    <a href="/logout" th:href="@{#}" onclick="$('#form').submit();">
+                    <a href="/logout" th:href="@{/logout}" onclick="$('#form').submit();">
                         <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Logout
                     </a>
-                    <form style="visibility: hidden" id="form" method="post" action="#" th:action="@{/logout}"></form>
+                    <form style="visibility: hidden" id="form" method="post" action="/logout" th:action="@{/logout}"></form>
                 </li>
             </ul>
         </div>

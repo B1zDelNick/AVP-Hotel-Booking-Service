@@ -1,17 +1,57 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8"/>
-    <title>Page not found</title>
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0"/>
+
+    <title th:text="${@environment.getProperty('app.name')}">Hotel Booking Service</title>
+
+    <!-- CSS -->
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" type="text/css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flat-ui/2.3.0/css/flat-ui.min.css" rel="stylesheet"
+          th:href="@{/webjars/flat-ui/bcaf2de95e/css/flat-ui.css}" type="text/css"/>
+    <link href="../../static/css/core.css" rel="stylesheet"
+          th:href="@{/css/core.css}" type="text/css"/>
+
+    <!-- 3rd party -->
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.1.min.js"
+            th:src="@{/webjars/jquery/3.2.0/jquery.min.js}"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.js}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"
+            th:src="@{/webjars/underscorejs/1.8.3/underscore-min.js}"></script>
+
 </head>
 <body>
-<div>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+
+        </div>
+        <div class="navbar-collapse collapse">
+
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+
+</div>
+
+<div class="container" ng-cloak="" style="min-height: calc(100vh - 80px - 35px);">
+
     <h1 th:align="center" th:text="'Page not found:'">Page not found on this server</h1>
     <h2 th:align="center" th:text="${errorMessage}"></h2>
-    <!--<h1>
-        <span th:text="'Page not found:'" th:remove="tag">Page not found on this server</span>
-        <small th:text="${errorMessage}" ></small>
-    </h1>-->
+
 </div>
+
+<footer th:align="center">
+    &copy; <span th:text="${#temporals.format(#temporals.createNow(), 'dd/MMM/yyyy HH:mm')}">2017</span>,
+    <span th:text="${@environment.getProperty('app.version')}"></span>
+</footer>
+
 </body>
 </html>
