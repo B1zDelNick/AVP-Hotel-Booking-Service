@@ -13,7 +13,7 @@ public class Account
 {
     @Id
     @GeneratedValue
-    private String id;
+    private int id;
     @Column(unique = true)
     private String email;
     @JsonIgnore

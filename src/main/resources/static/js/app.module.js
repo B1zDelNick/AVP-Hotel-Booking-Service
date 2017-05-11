@@ -12,6 +12,30 @@
                     controller: 'LoginController'
                 });
 
+            $routeProvider.when('/about',
+                {
+                    templateUrl:'templates/about.html',
+                    controller: function () {
+
+                    }
+                });
+
+            $routeProvider.when('/bookings',
+                {
+                    templateUrl:'templates/bookings.html',
+                    controller: function () {
+
+                    }
+                });
+
+            $routeProvider.when('/contacts',
+                {
+                    templateUrl:'templates/contacts.html',
+                    controller: function () {
+
+                    }
+                });
+
             $routeProvider.when('/register',
                 {
                     templateUrl:'templates/register.html',

@@ -11,7 +11,14 @@ public class ViewController
 {
     private static final String INDEX_VIEW = "views/index";
 
-    @GetMapping(value = {"/home", "/login", "/register", "logout2"})
+    @GetMapping(value = {
+            "/home",
+            "/login",
+            "/register",
+            "logout2",
+            "/about",
+            "/contacts",
+            "/bookings"})
     public ModelAndView index(ModelAndView view)
     {
         view.setViewName(INDEX_VIEW);

@@ -25,6 +25,8 @@ import org.springframework.security.web.authentication.rememberme.TokenBasedReme
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter
 {
+    private static final String BOOKINGS_URL = "/bookings";
+
     @Autowired
     private RedirectAuthenticationSuccessHandler successHandler;
 
@@ -57,7 +59,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     {
         http
             .authorizeRequests()
-                .antMatchers()
+                .antMatchers(
+                        BOOKINGS_URL)
                     .fullyAuthenticated()
                 .anyRequest()
                     .permitAll()

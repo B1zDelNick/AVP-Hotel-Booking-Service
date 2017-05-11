@@ -8,17 +8,23 @@
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="AVP hotel booking service"/>
+    <meta name="author" content="Vasilevich Andrei"/>
 
     <title th:text="${@environment.getProperty('app.name')}">Hotel Booking Service</title>
 
     <!-- CSS -->
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
           th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" type="text/css"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flat-ui/2.3.0/css/flat-ui.min.css" rel="stylesheet"
-          th:href="@{/webjars/flat-ui/bcaf2de95e/css/flat-ui.css}" type="text/css"/>
-    <link href="../../static/css/core.css" rel="stylesheet"
-          th:href="@{/css/core.css}" type="text/css"/>
+          th:href="@{/webjars/flat-ui/bcaf2de95e/css/flat-ui.css}" type="text/css"/>-->
+    <link href="../../static/css/bootstrap.min.css" rel="stylesheet"
+          th:href="@{/css/bootstrap.min.css}" type="text/css"/>
+    <link href="../../static/css/style.css" rel="stylesheet"
+          th:href="@{/css/style.css}" type="text/css"/>
 
     <!-- 3rd party -->
 
@@ -28,6 +34,10 @@
             th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.js}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"
             th:src="@{/webjars/underscorejs/1.8.3/underscore-min.js}"></script>
+
+    <!--<script src="../../static/lib/bootstrap.min.js" th:src="@{/lib/bootstrap.min.js}"/>
+    <script src="../../static/lib/jquery.min.js" th:src="@{/lib/jquery.min.js}"/>
+    <script src="../../static/lib/scripts.js" th:src="@{/lib/scripts.js}"/>-->
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"
             th:src="@{/webjars/angular/1.6.4/angular.min.js}"></script>
@@ -54,56 +64,129 @@
 </head>
 <body>
 
-<div class="navbar navbar-inverse navbar-fixed-top" ng-controller="MainController">
+<!--<div class="navbar navbar-inverse" ng-controller="MainController">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+                <span class="icon-bar">Test</span>
+                <span class="icon-bar">Test2</span>
+                <span class="icon-bar">Test3</span>
             </button>
-            <a class="navbar-brand" href="#" th:text="${@environment.getProperty('app.name')}">Demo project</a>
+            <span style="cursor: pointer" class="navbar-brand" href="" th:text="${@environment.getProperty('app.name')}">Demo project</span>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li id="home-btn" class="active" ng-click='selectMe($event)'>
-                    <a ng-click="toHome()">Home</a>
+                    <a style="cursor: pointer" ng-click="toHome()">Home</a>
                 </li>
                 <li id="about-btn" ng-click='selectMe($event)'>
-                    <a ng-click="toAbout()">About</a>
+                    <a style="cursor: pointer" ng-click="toAbout()">About</a>
                 </li>
                 <li id="contacts-btn" ng-click='selectMe($event)'>
-                    <a ng-click="toContacts()">Contacts</a>
+                    <a style="cursor: pointer" ng-click="toContacts()">Contacts</a>
+                </li>
+                <li id="my-bookings-btn" ng-click='selectMe($event)' sec:authorize="isAuthenticated()">
+                    <a style="cursor: pointer" ng-click="toBookings()">My Bookings</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li sec:authorize="not isAuthenticated()">
-                    <a ng-click="toLogin()">
+                    <a style="cursor: pointer" ng-click="toLogin()">
                         <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Sign in
                     </a>
                 </li>
                 <li sec:authorize="isAuthenticated()">
-                    <a onclick="$('#form').submit();">
+                    <a style="cursor: pointer" onclick="$('#form').submit();">
                         <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Logout
                     </a>
                     <form style="visibility: hidden" id="form" method="post" action="/logout" th:action="@{/logout}"></form>
                 </li>
             </ul>
         </div>
-        <!--/.nav-collapse -->
     </div>
 
-</div>
+</div>-->
 
-<div class="container" ng-cloak="" style="min-height: calc(100vh - 80px - 35px);">
+<div class="container" ng-cloak="" style="min-height: calc(100vh - 65px);">
+
+    <div class="navbar navbar-default" ng-controller="MainController">
+        <div class="navbar-header">
+
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button> <a class="navbar-brand" th:text="${@environment.getProperty('app.name')}">Brand</a>
+
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li id="home-btn" class="active" ng-click='selectMe($event)'>
+                    <a style="cursor: pointer" ng-click="toHome()">Home</a>
+                </li>
+                <li id="about-btn" ng-click='selectMe($event)'>
+                    <a style="cursor: pointer" ng-click="toAbout()">About</a>
+                </li>
+                <li id="contacts-btn" ng-click='selectMe($event)'>
+                    <a style="cursor: pointer" ng-click="toContacts()">Contacts</a>
+                </li>
+                <li id="my-bookings-btn" ng-click='selectMe($event)'>
+                    <a style="cursor: pointer" ng-click="toBookings()">My Bookings</a>
+                </li>
+            </ul>
+
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+
+            <ul class="nav navbar-nav navbar-right">
+
+                <li class="dropdown" style="width: 200px" sec:authorize="isAuthenticated()">
+                    <a href="#" class="dropdown-toggle text-center" data-toggle="dropdown">Welcome, Andrei!<strong class="caret"></strong></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a style="cursor: pointer" ng-click="toLogin()" sec:authorize="isAuthenticated()">
+                        <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Sign in
+                    </a>
+                </li>
+                <li>
+                    <a style="cursor: pointer" onclick="$('#form').submit();" sec:authorize="not isAuthenticated()">
+                        <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Logout
+                    </a>
+                    <form style="visibility: hidden" id="form" method="post" action="/logout" th:action="@{/logout}"></form>
+                </li>
+            </ul>
+        </div>
+
+    </div>
 
     <ng-view></ng-view>
 
 </div>
 
 <footer th:align="center">
-    &copy; <span th:text="${#temporals.format(#temporals.createNow(), 'dd/MMM/yyyy HH:mm')}">2017</span>,
-    <span th:text="${@environment.getProperty('app.version')}"></span>
+    <p class="float-xs-right">
+        <a href="#">Back to top</a>
+    </p>
+    <p>&copy;
+        <span th:text="${#temporals.format(#temporals.createNow(), 'dd.MM yyyy')}">2017</span> Version: <span th:text="${@environment.getProperty('app.version')}"></span> AVP, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
+    </p>
+
 </footer>
 
 </body>

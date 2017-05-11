@@ -16,40 +16,17 @@
             username: "",
             password: ""
         };
+
         $scope.toRegister = function ()
         {
             $location.url("/register");
         };
-        $scope.hasErrors = function()
+
+        $scope.hasError = function ()
         {
-            return $scope.errors;
-        };
+            console.log($location.search().error);
 
-        $scope.login = function()
-        {
-            /*console.log(JSON.stringify($scope.credentials));
-
-            var url = "/auth/login";
-            var result = false;
-            var promise = $http.post(url, JSON.stringify($scope.credentials));
-
-            promise.then(
-                function(response)
-                {
-                    console.log(response.data);
-                    result = response.data.body == 'ERROR';
-
-                    //if (!result) $location.url("/");
-                },
-                function(error)
-                {
-                    alert( "Exception details: " + JSON.stringify({data: error}));
-                    console.log(error);
-
-                    result = true;
-                });
-
-            $scope.errors = result;*/
-        };
+            return $location.search().error != null
+        }
     }
 })();

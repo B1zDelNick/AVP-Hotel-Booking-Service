@@ -28,12 +28,17 @@
 
         $scope.toAbout = function ()
         {
-            console.log("Not implemented");
+            $location.url("/about");
         };
 
         $scope.toContacts = function ()
         {
-            console.log("Not implemented");
+            $location.url("/contacts");
+        };
+
+        $scope.toBookings = function ()
+        {
+            $location.url("/bookings");
         };
 
         $scope.selectMe = function (event)

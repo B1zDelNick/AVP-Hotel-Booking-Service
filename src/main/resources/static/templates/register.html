@@ -1,4 +1,7 @@
-<form class="form-narrow form-horizontal" method="post" action="/register">
+<h1 class="text-center">Register page</h1>
+<hr/>
+
+<form class="form-signin form-horizontal" method="post" action="/register">
 
     <div class="alert alert-danger" ng-show="hasError()">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -6,7 +9,8 @@
     </div>
 
     <fieldset>
-        <legend>Please Sign Up</legend>
+        <h2 class="form-signin-heading">Please Sign Up</h2>
+        <hr/>
         <div class="form-group">
             <label for="email" class="col-lg-2 control-label">Email</label>
             <div class="col-lg-10">
@@ -23,12 +27,14 @@
         </div>
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
-                <button type="submit" class="btn btn-default">Sign up</button>
+                <button type="submit" class="btn btn-block" style="width: 100px">Sign up</button>
             </div>
         </div>
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
-                <p>Already have an account? <a ng-click="toLogin()">Sign In</a></p>
+                <p><b>Already have an account?</b>
+                    <a style="cursor: pointer" ng-click="toLogin()"><b>Sign In</b></a>
+                </p>
             </div>
         </div>
     </fieldset>
